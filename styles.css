@@ -1,17 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
 body {
     margin: 0;
     padding: 0;
     background: #ccee66;
-    /* cor de fundo */
     color: white;
-    /* cor do texto */
-    padding: 20px 160px;
-    height: 100vh;
-    /* altura */
     font-family: "Noto Sans", sans-serif;
-
-    overflow: hidden;
-    /* o que fazer com o que sobra ?*/
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 body::before {
@@ -19,67 +18,94 @@ body::before {
     background: #202020;
     position: absolute;
     top: 0;
-    left: -600px;
-    transform: rotate(-70deg);
-    width: 100%;
-    height: 120%;
+    left: 0;
+    transform: skewX(-30deg);
+    width: 50%;
+    height: 100%;
+    z-index: 0;
 }
 
 body::after {
     content: 'Nike';
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 55%;
     transform: translate(-50%, -50%);
-    color: black;
-    font-size: 250px;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 220px;
     font-weight: bold;
-    /* grossura da fonte */
-    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
 }
 
-/* after(depois) / before(antes) */
-
-
-
-/* class = . */
 .logo {
     width: 80px;
-    /* largura */
+    margin: 20px 160px;
+    z-index: 2;
+    position: relative;
+}
+
+.caixa-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 160px;
+    position: relative;
+    z-index: 2;
+}
+
+.caixa-texto {
+    max-width: 500px;
+    z-index: 2;
+    position: relative;
 }
 
 h4 {
-    font-size: 30px;
+    font-size: 28px;
+    margin: 10px 0;
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 70px;
+    margin: 10px 0;
+    line-height: 1.1;
 }
 
 p {
     font-size: 16px;
-    /* tamanho do texto */
-    margin-bottom: 40px;
+    line-height: 1.6;
+    margin: 30px 0;
 }
 
 .botao-carrinho {
     background: #a3be52;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 20px;
-    /* arredondar a borda */
     font-size: 16px;
     color: black;
     cursor: pointer;
-    transition: 0.5s;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s;
 }
 
 .botao-carrinho:hover {
-    opacity: 0.7;
-    /* transparencia */
+    opacity: 0.8;
+}
+
+.caixa-imagem {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    position: relative;
 }
 
 .imagem-tenis {
-    width: 800px;
+    width: 100%;
+    max-width: 600px;
     transform: rotate(-25deg);
     filter: drop-shadow(30px 45px 40px #161616);
     transition: 1s;
@@ -90,35 +116,26 @@ p {
     transform: rotate(-25deg) translateY(-30px);
 }
 
-.caixa-principal {
-    display: flex;
-    /* habilita alguns superpoderes */
-    justify-content: space-between;
-    /* alinha na horizontal */
-    align-items: center;
-    /* alinha na vertical */
-    height: 75%;
-    position: relative;
-    z-index: 1;
-}
-
-.caixa-texto {
-    max-width: 500px;
-    /* largura maxima */
-}
-
 .caixa-botoes {
     z-index: 2;
     position: relative;
     display: flex;
     gap: 20px;
+    padding: 20px 40px;
+    margin: 40px 160px;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.2); /* fundo escuro translúcido */
+    border-radius: 30px;
+    backdrop-filter: blur(5px); /* efeito vidro */
 }
 
+
 .botoes {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .botoes:active {
@@ -135,4 +152,53 @@ p {
 
 .rosa {
     background: #ff9eb5;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+    .caixa-principal {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px;
+    }
+
+    .logo {
+        margin: 20px 40px;
+    }
+
+    .caixa-botoes {
+        padding: 40px;
+    }
+
+    body::after {
+        font-size: 100px;
+        left: 50%;
+        top: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 45px;
+    }
+
+    .imagem-tenis {
+        transform: rotate(-15deg);
+    }
+
+    .botoes {
+        width: 50px;
+        height: 50px;
+    }
+
+    body::before {
+        width: 100%;
+        transform: skewX(-15deg);
+    }
+
+    body::after {
+        font-size: 80px;
+        left: 50%;
+        top: 80%;
+    }
 }
